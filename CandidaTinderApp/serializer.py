@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from CandidaTinderApp.models import Parlamentares, Partidos, Propostas, Usuarios, VotacoesParlamentares, VotacoesUsuarios
+from CandidaTinderApp.models import CandidatoUsuario, Parlamentares, PartidoUsuario, Partidos, Propostas, Usuarios, VotacoesParlamentares, VotacoesUsuarios
 
 class PartidosSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,19 +27,7 @@ class UsuariosSerializer(serializers.ModelSerializer):
                     'Senha',
                     'Nome',
                     'Estado',
-                    'Idade',
-                    'IdPartido1',
-                    'PercentualPartido1',
-                    'IdPartido2',
-                    'PercentualPartido2',
-                    'IdPartido3',
-                    'PercentualPartido3',
-                    'IdParlamentar1',
-                    'PercentualParlamentar1',
-                    'IdParlamentar2',
-                    'PercentualParlamentar2',
-                    'IdParlamentar3',
-                    'PercentualParlamentar3'
+                    'Idade'
                     )
 
 class ParlamentaresSerializer(serializers.ModelSerializer):
@@ -67,4 +55,20 @@ class VotacoesUsuariosSerializer(serializers.ModelSerializer):
                     'IdProposta',
                     'Voto')
 
-                    
+class CandidatoUsuarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CandidatoUsuario
+        fields = ('IdCandidatoUsuario',
+                    'IdUsuario',
+                    'OrdemAfinidade',
+                    'IdParlamentar',
+                    'PercentualParlamentar')
+
+class PartidoUsuarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PartidoUsuario
+        fields = ('IdPartidoUsuario',
+                    'IdUsuario',
+                    'OrdemAfinidade',
+                    'IdPartido',
+                    'PercentualPartido')

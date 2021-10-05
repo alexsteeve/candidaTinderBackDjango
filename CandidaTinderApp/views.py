@@ -3,8 +3,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
-from CandidaTinderApp.models import Partidos, Propostas, Usuarios, Parlamentares, VotacoesParlamentares, VotacoesUsuarios
-from CandidaTinderApp.serializer import PartidosSerializer, PropostasSerializer, UsuariosSerializer, ParlamentaresSerializer, VotacoesParlamentaresSerializer, VotacoesUsuariosSerializer
+from CandidaTinderApp.models import CandidatoUsuario, PartidoUsuario, Partidos, Propostas, Usuarios, Parlamentares, VotacoesParlamentares, VotacoesUsuarios
+from CandidaTinderApp.serializer import CandidatoUsuarioSerializer, PartidoUsuarioSerializer, PartidosSerializer, PropostasSerializer, UsuariosSerializer, ParlamentaresSerializer, VotacoesParlamentaresSerializer, VotacoesUsuariosSerializer
 
 # Create your views here.
 @csrf_exempt
@@ -212,4 +212,72 @@ def VotacoesUsuariosApi(request,id=0):
         votacoesUsuarios = VotacoesUsuarios.objects.get(IdVotacao=id)
         votacoesUsuarios.delete()
         return JsonResponse("Votacao de usuario apagada com sucesso!", safe=False) 
+
+@csrf_exempt
+def CandidatoUsuarioApi(request,id=0):
+    if request.method=='GET':
+        if id==0:
+            candidatoUsuario = CandidatoUsuario.objects.all()
+            candidatoUsuario_serializer = CandidatoUsuarioSerializer(candidatoUsuario, many=True)
+            return JsonResponse(candidatoUsuario_serializer.data, safe=False)
+        else:
+            candidatoUsuario = CandidatoUsuario.objects.get(IdCandidatoUsuario=id)
+            candidatoUsuario_serializer = CandidatoUsuarioSerializer(candidatoUsuario)
+            return JsonResponse(candidatoUsuario_serializer.data, safe=False)
+
+    elif request.method=='POST':
+        candidatoUsuario_data = JSONParser().parse(request)
+        candidatoUsuario_serializer = CandidatoUsuarioSerializer(data=candidatoUsuario_data)
+        if candidatoUsuario_serializer.is_valid():
+            candidatoUsuario_serializer.save()
+            return JsonResponse("Candidato do usuario incluido com sucesso!", safe=False)
+        return JsonResponse("Falha ao incluir um candidato de usuario.", safe=False)
+
+    elif request.method=='PUT':
+        candidatoUsuario_data = JSONParser().parse(request)
+        candidatoUsuario=CandidatoUsuario.objects.get(IdCandidatoUsuario=candidatoUsuario_data['IdCandidatoUsuario'])
+        candidatoUsuario_serializer=CandidatoUsuarioSerializer(candidatoUsuario,data=candidatoUsuario_data)
+        if candidatoUsuario_serializer.is_valid():
+            candidatoUsuario_serializer.save()
+            return JsonResponse("Candidato do usuario atualizado com sucesso!", safe=False)
+        return JsonResponse("Falha ao atualizar um candidato de usuario.", safe=False)
+
+    elif request.method=='DELETE':
+        candidatoUsuario = CandidatoUsuario.objects.get(IdCandidatoUsuario=id)
+        candidatoUsuario.delete()
+        return JsonResponse("Candidato de usuario apagado com sucesso!", safe=False) 
+
+@csrf_exempt
+def PartidoUsuarioApi(request,id=0):
+    if request.method=='GET':
+        if id==0:
+            partidoUsuario = PartidoUsuario.objects.all()
+            partidoUsuario_serializer = PartidoUsuarioSerializer(partidoUsuario, many=True)
+            return JsonResponse(partidoUsuario_serializer.data, safe=False)
+        else:
+            partidoUsuario = PartidoUsuario.objects.get(IdPartidoUsuario=id)
+            partidoUsuario_serializer = PartidoUsuarioSerializer(partidoUsuario)
+            return JsonResponse(partidoUsuario_serializer.data, safe=False)
+
+    elif request.method=='POST':
+        partidoUsuario_data = JSONParser().parse(request)
+        partidoUsuario_serializer = PartidoUsuarioSerializer(data=partidoUsuario_data)
+        if partidoUsuario_serializer.is_valid():
+            partidoUsuario_serializer.save()
+            return JsonResponse("Partido do usuario incluido com sucesso!", safe=False)
+        return JsonResponse("Falha ao incluir um partido de usuario.", safe=False)
+
+    elif request.method=='PUT':
+        partidoUsuario_data = JSONParser().parse(request)
+        partidoUsuario=PartidoUsuario.objects.get(IdPartidoUsuario=partidoUsuario_data['IdPartidoUsuario'])
+        partidoUsuario_serializer=PartidoUsuarioSerializer(partidoUsuario,data=partidoUsuario_data)
+        if partidoUsuario_serializer.is_valid():
+            partidoUsuario_serializer.save()
+            return JsonResponse("Partido do usuario atualizado com sucesso!", safe=False)
+        return JsonResponse("Falha ao atualizar um partido de usuario.", safe=False)
+
+    elif request.method=='DELETE':
+        partidoUsuario = PartidoUsuario.objects.get(IdPartidoUsuario=id)
+        partidoUsuario.delete()
+        return JsonResponse("Partido de usuario apagada com sucesso!", safe=False) 
 

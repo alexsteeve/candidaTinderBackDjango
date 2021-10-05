@@ -13,5 +13,10 @@ urlpatterns=[
     url(r'^votacaoparlamentares/$',views.votacoesParlamentaresApi),
     url(r'^votacaoparlamentares/([0-9]+)$',views.votacoesParlamentaresApi),
     url(r'^votacaousuarios/$',views.VotacoesUsuariosApi),
-    url(r'^votacaousuarios/([0-9]+)$',views.VotacoesUsuariosApi)
+    url(r'^votacaousuarios/([0-9]+)$',views.VotacoesUsuariosApi),
+    url(r'^candidatousuario/$',views.CandidatoUsuarioApi),
+    url(r'^candidatousuario/([0-9]+)$',views.CandidatoUsuarioApi),
+    url(r'^partidousuario/$',views.PartidoUsuarioApi),
+    url(r'^partidousuario/([0-9]+)$',views.PartidoUsuarioApi)
+
 ]
