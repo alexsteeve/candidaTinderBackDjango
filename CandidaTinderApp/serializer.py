@@ -26,7 +26,14 @@ class UsuariosSerializer(serializers.ModelSerializer):
                     'Login',
                     'Senha',
                     'Nome',
-                    'Estado')
+                    'Estado',
+                    'Idade',
+                    'IdPartido1',
+                    'IdPartido2',
+                    'IdPartido3',
+                    'IdParlamentar1',
+                    'IdParlamentar2',
+                    'IdParlamentar3')
 
 class ParlamentaresSerializer(serializers.ModelSerializer):
     class Meta:
