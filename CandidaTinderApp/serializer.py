@@ -29,11 +29,18 @@ class UsuariosSerializer(serializers.ModelSerializer):
                     'Estado',
                     'Idade',
                     'IdPartido1',
+                    'PercentualPartido1',
                     'IdPartido2',
+                    'PercentualPartido2',
                     'IdPartido3',
+                    'PercentualPartido3',
                     'IdParlamentar1',
+                    'PercentualParlamentar1',
                     'IdParlamentar2',
-                    'IdParlamentar3')
+                    'PercentualParlamentar2',
+                    'IdParlamentar3',
+                    'PercentualParlamentar3'
+                    )
 
 class ParlamentaresSerializer(serializers.ModelSerializer):
     class Meta:

@@ -24,11 +24,17 @@ class Usuarios(models.Model):
     Estado = models.CharField(max_length=100)
     Idade = models.IntegerField(default=0)
     IdPartido1 = models.IntegerField(default=0)
+    PercentualPartido1 = models.IntegerField(default=0)
     IdPartido2 = models.IntegerField(default=0)
+    PercentualPartido2 = models.IntegerField(default=0)
     IdPartido3 = models.IntegerField(default=0)
+    PercentualPartido3 = models.IntegerField(default=0)
     IdParlamentar1 = models.IntegerField(default=0)
+    PercentualParlamentar1 = models.IntegerField(default=0)
     IdParlamentar2 = models.IntegerField(default=0)
+    PercentualParlamentar2 = models.IntegerField(default=0)
     IdParlamentar3 = models.IntegerField(default=0)
+    PercentualParlamentar3 = models.IntegerField(default=0)
 
 class Parlamentares(models.Model):
     IdParlamentar = models.AutoField(primary_key=True)
