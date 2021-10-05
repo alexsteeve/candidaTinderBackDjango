@@ -22,6 +22,13 @@ class Usuarios(models.Model):
     Senha = models.CharField(max_length=100)
     Nome = models.CharField(max_length=100)
     Estado = models.CharField(max_length=100)
+    Idade = models.IntegerField(default=0)
+    IdPartido1 = models.IntegerField(default=0)
+    IdPartido2 = models.IntegerField(default=0)
+    IdPartido3 = models.IntegerField(default=0)
+    IdParlamentar1 = models.IntegerField(default=0)
+    IdParlamentar2 = models.IntegerField(default=0)
+    IdParlamentar3 = models.IntegerField(default=0)
 
 class Parlamentares(models.Model):
     IdParlamentar = models.AutoField(primary_key=True)
