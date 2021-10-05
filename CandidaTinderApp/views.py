@@ -10,9 +10,14 @@ from CandidaTinderApp.serializer import PartidosSerializer, PropostasSerializer,
 @csrf_exempt
 def partidosApi(request,id=0):
     if request.method=='GET':
-        partidos = Partidos.objects.all()
-        partidos_serializer = PartidosSerializer(partidos, many=True)
-        return JsonResponse(partidos_serializer.data, safe=False)
+        if id==0:
+            partidos = Partidos.objects.all()
+            partidos_serializer = PartidosSerializer(partidos, many=True)
+            return JsonResponse(partidos_serializer.data, safe=False)
+        else:
+            partidos = Partidos.objects.get(IdPartido=id)
+            partidos_serializer = PartidosSerializer(partidos)
+            return JsonResponse(partidos_serializer.data, safe=False)
 
     elif request.method=='POST':
         partidos_data = JSONParser().parse(request)
@@ -39,9 +44,14 @@ def partidosApi(request,id=0):
 @csrf_exempt
 def propostasApi(request,id=0):
     if request.method=='GET':
-        propostas = Propostas.objects.all()
-        propostas_serializer = PropostasSerializer(propostas, many=True)
-        return JsonResponse(propostas_serializer.data, safe=False)
+        if id==0:
+            propostas = Propostas.objects.all()
+            propostas_serializer = PropostasSerializer(propostas, many=True)
+            return JsonResponse(propostas_serializer.data, safe=False)
+        else:
+            propostas = Propostas.objects.get(IdProposta=id)
+            propostas_serializer = PropostasSerializer(propostas)
+            return JsonResponse(propostas_serializer.data, safe=False)
 
     elif request.method=='POST':
         propostas_data = JSONParser().parse(request)
@@ -68,9 +78,14 @@ def propostasApi(request,id=0):
 @csrf_exempt
 def usuariosApi(request,id=0):
     if request.method=='GET':
-        usuarios = Usuarios.objects.all()
-        usuarios_serializer = UsuariosSerializer(usuarios, many=True)
-        return JsonResponse(usuarios_serializer.data, safe=False)
+        if id==0:
+            usuarios = Usuarios.objects.all()
+            usuarios_serializer = UsuariosSerializer(usuarios, many=True)
+            return JsonResponse(usuarios_serializer.data, safe=False)
+        else:
+            usuarios = Usuarios.objects.get(IdUsuario=id)
+            usuarios_serializer = UsuariosSerializer(usuarios)
+            return JsonResponse(usuarios_serializer.data, safe=False)
 
     elif request.method=='POST':
         usuarios_data = JSONParser().parse(request)
@@ -97,9 +112,15 @@ def usuariosApi(request,id=0):
 @csrf_exempt
 def parlamentaresApi(request,id=0):
     if request.method=='GET':
-        parlamentares = Parlamentares.objects.all()
-        parlamentares_serializer = ParlamentaresSerializer(parlamentares, many=True)
-        return JsonResponse(parlamentares_serializer.data, safe=False)
+        if id==0:
+            parlamentares = Parlamentares.objects.all()
+            parlamentares_serializer = ParlamentaresSerializer(parlamentares, many=True)
+            return JsonResponse(parlamentares_serializer.data, safe=False)
+        else:
+            parlamentares = Parlamentares.objects.get(IdParlamentar=id)
+            parlamentares_serializer = ParlamentaresSerializer(parlamentares)
+            return JsonResponse(parlamentares_serializer.data, safe=False)
+
 
     elif request.method=='POST':
         parlamentares_data = JSONParser().parse(request)
@@ -126,9 +147,15 @@ def parlamentaresApi(request,id=0):
 @csrf_exempt
 def votacoesParlamentaresApi(request,id=0):
     if request.method=='GET':
-        votacoesParlamentares = VotacoesParlamentares.objects.all()
-        votacoesParlamentares_serializer = VotacoesParlamentaresSerializer(votacoesParlamentares, many=True)
-        return JsonResponse(votacoesParlamentares_serializer.data, safe=False)
+        if id==0:
+            votacoesParlamentares = VotacoesParlamentares.objects.all()
+            votacoesParlamentares_serializer = VotacoesParlamentaresSerializer(votacoesParlamentares, many=True)
+            return JsonResponse(votacoesParlamentares_serializer.data, safe=False)
+        else:
+            votacoesParlamentares = VotacoesParlamentares.objects.get(IdVotacao=id)
+            votacoesParlamentares_serializer = VotacoesParlamentaresSerializer(votacoesParlamentares)
+            return JsonResponse(votacoesParlamentares_serializer.data, safe=False)
+
 
     elif request.method=='POST':
         votacoesParlamentares_data = JSONParser().parse(request)
@@ -155,9 +182,14 @@ def votacoesParlamentaresApi(request,id=0):
 @csrf_exempt
 def VotacoesUsuariosApi(request,id=0):
     if request.method=='GET':
-        votaCoesUsuarios = VotacoesUsuarios.objects.all()
-        votacoesUsuarios_serializer = VotacoesUsuariosSerializer(votaCoesUsuarios, many=True)
-        return JsonResponse(votacoesUsuarios_serializer.data, safe=False)
+        if id==0:
+            votaCoesUsuarios = VotacoesUsuarios.objects.all()
+            votacoesUsuarios_serializer = VotacoesUsuariosSerializer(votaCoesUsuarios, many=True)
+            return JsonResponse(votacoesUsuarios_serializer.data, safe=False)
+        else:
+            votaCoesUsuarios = VotacoesUsuarios.objects.get(IdVotacao=id)
+            votacoesUsuarios_serializer = VotacoesUsuariosSerializer(votaCoesUsuarios)
+            return JsonResponse(votacoesUsuarios_serializer.data, safe=False)
 
     elif request.method=='POST':
         votacoesUsuarios_data = JSONParser().parse(request)
