@@ -62,7 +62,8 @@ class CandidatoUsuarioSerializer(serializers.ModelSerializer):
                     'IdUsuario',
                     'OrdemAfinidade',
                     'IdParlamentar',
-                    'PercentualParlamentar')
+                    'PercentualParlamentar',
+                    'QuantidadeParticipacoes')
 
 class PartidoUsuarioSerializer(serializers.ModelSerializer):
     class Meta:

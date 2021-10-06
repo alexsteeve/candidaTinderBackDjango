@@ -49,6 +49,7 @@ class CandidatoUsuario(models.Model):
     OrdemAfinidade = models.IntegerField(default=0)
     IdParlamentar = models.ForeignKey(Parlamentares, on_delete=models.CASCADE)
     PercentualParlamentar = models.IntegerField(default=0)
+    QuantidadeParticipacoes = models.IntegerField(default=0)
 
 class PartidoUsuario(models.Model):
     IdPartidoUsuario = models.AutoField(primary_key=True)
